@@ -2,15 +2,8 @@ const totalPages = 604;
 let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
 const pageImage = document.getElementById('quran-page');
-const pageWrapper = document.querySelector('.page-wrapper');
 const progressBar = document.getElementById('progress-bar');
-const prevButton = document.getElementById('prev-page');
-const nextButton = document.getElementById('next-page');
-const juzMenuBtn = document.getElementById('juz-menu-btn');
-const juzMenu = document.getElementById('juz-menu');
-const navArrows = document.querySelector('.nav-arrows');
-
-let hideArrowsTimeout;
+const fullscreenBtn = document.getElementById('fullscreen-btn');
 
 function updatePage() {
     pageImage.src = `source/pages/${currentPage}.png`;
@@ -37,30 +30,14 @@ function goToPage(pageNumber) {
     }
 }
 
-function showNavArrows() {
-    navArrows.classList.remove('hidden');
-    clearTimeout(hideArrowsTimeout);
-    hideArrowsTimeout = setTimeout(() => {
-        navArrows.classList.add('hidden');
-    }, 60000); // Hide after 1 minute
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updatePage();
-    // Initialize arrows visibility timeout
-    hideArrowsTimeout = setTimeout(() => {
-        navArrows.classList.add('hidden');
-    }, 60000); // Hide arrows after 1 minute
-});
-
+// Handle swipe gestures
 let touchStartX = 0;
 
-pageWrapper.addEventListener('touchstart', (event) => {
+document.addEventListener('touchstart', (event) => {
     touchStartX = event.touches[0].clientX;
-    showNavArrows(); // Show arrows on touch
 });
 
-pageWrapper.addEventListener('touchend', (event) => {
+document.addEventListener('touchend', (event) => {
     const touchEndX = event.changedTouches[0].clientX;
     const touchDiff = touchEndX - touchStartX; // Positive if swiping right, negative if swiping left
 
@@ -69,34 +46,12 @@ pageWrapper.addEventListener('touchend', (event) => {
     }
 });
 
-prevButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        updatePage();
-        showNavArrows();
+fullscreenBtn.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
     }
 });
 
-nextButton.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-        currentPage++;
-        updatePage();
-        showNavArrows();
-    }
-});
-
-juzMenuBtn.addEventListener('click', () => {
-    juzMenu.classList.toggle('hidden');
-});
-
-juzMenu.addEventListener('click', (event) => {
-    if (event.target.tagName === 'A') {
-        const pageNumber = parseInt(event.target.getAttribute('data-page'));
-        goToPage(pageNumber);
-        juzMenu.classList.add('hidden'); // Auto-close the menu
-    }
-});
-
-// Show navigation arrows when user interacts with the page
-document.addEventListener('mousemove', showNavArrows);
-document.addEventListener('keydown', showNavArrows);
+updatePage();

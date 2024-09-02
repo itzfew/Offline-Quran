@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePage();
 });
 
+let touchStartX = 0;
+
 pageWrapper.addEventListener('touchstart', (event) => {
     touchStartX = event.touches[0].clientX;
 });

@@ -29,13 +29,9 @@ body {
     gap: 10px;
 }
 
-.header button, .header input {
+.header button {
     padding: 10px;
     font-size: 16px;
-}
-
-#search-bar {
-    flex-grow: 1;
 }
 
 .progress-container {
@@ -86,8 +82,4 @@ img {
 .dark-mode .page-wrapper {
     background-color: #444;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-audio {
-    margin-top: 20px;
 }

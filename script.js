@@ -8,6 +8,9 @@ const prevButton = document.getElementById('prev-page');
 const nextButton = document.getElementById('next-page');
 const juzMenuBtn = document.getElementById('juz-menu-btn');
 const juzMenu = document.getElementById('juz-menu');
+const navArrows = document.querySelector('.nav-arrows');
+
+let hideArrowsTimeout;
 
 function updatePage() {
     pageImage.src = `source/pages/${currentPage}.png`;
@@ -34,14 +37,27 @@ function goToPage(pageNumber) {
     }
 }
 
+function showNavArrows() {
+    navArrows.classList.remove('hidden');
+    clearTimeout(hideArrowsTimeout);
+    hideArrowsTimeout = setTimeout(() => {
+        navArrows.classList.add('hidden');
+    }, 60000); // Hide after 1 minute
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updatePage();
+    // Initialize arrows visibility timeout
+    hideArrowsTimeout = setTimeout(() => {
+        navArrows.classList.add('hidden');
+    }, 60000); // Hide arrows after 1 minute
 });
 
 let touchStartX = 0;
 
 pageWrapper.addEventListener('touchstart', (event) => {
     touchStartX = event.touches[0].clientX;
+    showNavArrows(); // Show arrows on touch
 });
 
 pageWrapper.addEventListener('touchend', (event) => {
@@ -57,6 +73,7 @@ prevButton.addEventListener('click', () => {
     if (currentPage > 1) {
         currentPage--;
         updatePage();
+        showNavArrows();
     }
 });
 
@@ -64,6 +81,7 @@ nextButton.addEventListener('click', () => {
     if (currentPage < totalPages) {
         currentPage++;
         updatePage();
+        showNavArrows();
     }
 });
 
@@ -75,6 +93,10 @@ juzMenu.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
         const pageNumber = parseInt(event.target.getAttribute('data-page'));
         goToPage(pageNumber);
-        juzMenu.classList.add('hidden');
+        juzMenu.classList.add('hidden'); // Auto-close the menu
     }
 });
+
+// Show navigation arrows when user interacts with the page
+document.addEventListener('mousemove', showNavArrows);
+document.addEventListener('keydown', showNavArrows);

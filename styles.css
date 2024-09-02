@@ -26,6 +26,8 @@ body {
     background-color: #ddd;
     border-radius: 5px;
     margin: 10px 0;
+    position: absolute;
+    top: 10px;
 }
 
 #progress-bar {
@@ -37,9 +39,8 @@ body {
 }
 
 .page-wrapper {
-    position: relative;
     width: 100%;
-    height: calc(100% - 60px); /* Adjust for progress bar and nav arrows height */
+    height: calc(100% - 20px); /* Adjust for progress bar height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,79 +53,20 @@ img {
     object-fit: contain; /* Maintain aspect ratio */
 }
 
-.nav-arrows {
+.fullscreen-btn {
     position: absolute;
-    bottom: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    transition: opacity 0.3s;
-}
-
-.nav-arrow {
-    background: rgba(0, 0, 0, 0.5);
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     padding: 10px;
     cursor: pointer;
     font-size: 24px;
-    opacity: 1;
+    transition: background 0.3s;
 }
 
-.nav-arrows.hidden {
-    opacity: 0;
-}
-
-.top-menu {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.juz-menu {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    z-index: 1000;
-    width: 150px;
-}
-
-.juz-menu a {
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    border-bottom: 1px solid #ddd;
-    display: block;
-}
-
-.juz-menu a:last-child {
-    border-bottom: none;
-}
-
-.juz-menu a:hover {
-    background-color: #f0f0f0;
-}
-
-.hidden {
-    display: none;
+.fullscreen-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
 }

@@ -59,6 +59,7 @@ img {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
+    transition: opacity 0.3s;
 }
 
 .nav-arrow {
@@ -69,6 +70,11 @@ img {
     padding: 10px;
     cursor: pointer;
     font-size: 24px;
+    opacity: 1;
+}
+
+.nav-arrows.hidden {
+    opacity: 0;
 }
 
 .top-menu {
@@ -100,6 +106,7 @@ img {
     top: 40px;
     right: 0;
     z-index: 1000;
+    width: 150px;
 }
 
 .juz-menu a {
@@ -107,6 +114,7 @@ img {
     text-decoration: none;
     color: black;
     border-bottom: 1px solid #ddd;
+    display: block;
 }
 
 .juz-menu a:last-child {

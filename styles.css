@@ -39,7 +39,7 @@ body {
 .page-wrapper {
     position: relative;
     width: 100%;
-    height: calc(100% - 20px); /* Adjust for progress bar height */
+    height: calc(100% - 60px); /* Adjust for progress bar and nav arrows height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,4 +50,73 @@ img {
     width: 100%;
     height: auto;
     object-fit: contain; /* Maintain aspect ratio */
+}
+
+.nav-arrows {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.nav-arrow {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.top-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.juz-menu {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 1000;
+}
+
+.juz-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.juz-menu a:last-child {
+    border-bottom: none;
+}
+
+.juz-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+.hidden {
+    display: none;
 }

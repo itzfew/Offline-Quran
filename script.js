@@ -15,10 +15,10 @@ function updatePage() {
 }
 
 function handleSwipe(direction) {
-    if (direction === 'right' && currentPage < totalPages) {
-        currentPage++;
-    } else if (direction === 'left' && currentPage > 1) {
-        currentPage--;
+    if (direction === 'left' && currentPage > 1) {
+        currentPage--; // Go to previous page
+    } else if (direction === 'right' && currentPage < totalPages) {
+        currentPage++; // Go to next page
     }
     updatePage();
 }
@@ -35,9 +35,9 @@ pageWrapper.addEventListener('touchstart', (event) => {
 
 pageWrapper.addEventListener('touchend', (event) => {
     const touchEndX = event.changedTouches[0].clientX;
-    const touchDiff = touchStartX - touchEndX;
+    const touchDiff = touchEndX - touchStartX; // Positive if swiping right, negative if swiping left
 
     if (Math.abs(touchDiff) > 50) { // Swipe threshold
-        handleSwipe(touchDiff > 0 ? 'right' : 'left');
+        handleSwipe(touchDiff > 0 ? 'right' : 'left'); // Right swipe goes to the next page, left swipe goes to the previous page
     }
 });

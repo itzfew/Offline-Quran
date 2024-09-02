@@ -8,11 +8,25 @@
 </head>
 <body>
     <div class="container">
+        <div class="top-menu">
+            <button id="juz-menu-btn" class="menu-btn">Juz Menu</button>
+            <div id="juz-menu" class="juz-menu hidden">
+                <!-- Example Juz items; add or adjust based on your actual data -->
+                <a href="#" data-page="1">Juz-01</a>
+                <a href="#" data-page="21">Juz-02</a>
+                <a href="#" data-page="41">Juz-03</a>
+                <!-- Add more Juz links as needed -->
+            </div>
+        </div>
         <div class="progress-container">
             <div id="progress-bar"></div>
-        </div> 
+        </div>
         <div class="page-wrapper">
             <img id="quran-page" src="source/pages/1.png" alt="Quran Page">
+        </div>
+        <div class="nav-arrows">
+            <button id="prev-page" class="nav-arrow">‹</button>
+            <button id="next-page" class="nav-arrow">›</button>
         </div>
     </div>
     <script src="script.js"></script>

@@ -4,7 +4,6 @@ let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 const pageImage = document.getElementById('quran-page');
 const pageWrapper = document.querySelector('.page-wrapper');
 const progressBar = document.getElementById('progress-bar');
-const themeToggle = document.getElementById('theme-toggle');
 
 function updatePage() {
     pageImage.src = `source/pages/${currentPage}.png`;
@@ -24,21 +23,9 @@ function handleSwipe(direction) {
     updatePage();
 }
 
-function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-
     updatePage();
 });
-
-themeToggle.addEventListener('click', toggleTheme);
 
 pageWrapper.addEventListener('touchstart', (event) => {
     touchStartX = event.touches[0].clientX;

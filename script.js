@@ -15,9 +15,9 @@ function updatePage() {
 }
 
 function handleSwipe(direction) {
-    if (direction === 'left' && currentPage < totalPages) {
+    if (direction === 'right' && currentPage < totalPages) {
         currentPage++;
-    } else if (direction === 'right' && currentPage > 1) {
+    } else if (direction === 'left' && currentPage > 1) {
         currentPage--;
     }
     updatePage();
@@ -38,6 +38,6 @@ pageWrapper.addEventListener('touchend', (event) => {
     const touchDiff = touchStartX - touchEndX;
 
     if (Math.abs(touchDiff) > 50) { // Swipe threshold
-        handleSwipe(touchDiff > 0 ? 'left' : 'right');
+        handleSwipe(touchDiff > 0 ? 'right' : 'left');
     }
 });
